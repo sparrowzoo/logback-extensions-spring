@@ -1,7 +1,7 @@
 buildscript {
   repositories {
-    google()
-    jcenter()
+    //google()
+    //jcenter()
   }
   dependencies {
 //    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
@@ -47,7 +47,7 @@ subprojects {
   repositories {
     mavenLocal()
     jcenter()
-    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    //maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
   }
 
   dependencies {

@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 
+import org.slf4j.helpers.Util;
 import org.slf4j.impl.StaticLoggerBinder;
 import org.springframework.util.ResourceUtils;
 import org.springframework.util.SystemPropertyUtils;
@@ -69,6 +70,8 @@ public class LogbackConfigurer {
     public static void initLogging(String location) throws FileNotFoundException, JoranException {
         String resolvedLocation = SystemPropertyUtils.resolvePlaceholders(location);
         URL url = ResourceUtils.getURL(resolvedLocation);
+        Util.report("logback configurer error 1/0");
+        //int i=1/0;
         LoggerContext loggerContext = (LoggerContext)StaticLoggerBinder.getSingleton().getLoggerFactory();
 
         // in the current version logback automatically configures at startup the context, so we have to reset it

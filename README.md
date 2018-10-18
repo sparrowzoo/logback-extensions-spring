@@ -8,6 +8,8 @@ Run the following command to build:
 
 ```
 ./gradlew clean assemble
+
+./gradlew uploadArchives
 ```
 
 #### License

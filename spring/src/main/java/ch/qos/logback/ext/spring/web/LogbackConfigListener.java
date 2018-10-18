@@ -1,12 +1,12 @@
 /**
  * Copyright (C) 2014 The logback-extensions developers (logback-user@qos.ch)
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,6 +14,11 @@
  * limitations under the License.
  */
 package ch.qos.logback.ext.spring.web;
+
+import ch.qos.logback.classic.LoggerContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.impl.StaticLoggerBinder;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -43,14 +48,22 @@ import javax.servlet.ServletContextListener;
  * @since 0.1
  */
 public class LogbackConfigListener implements ServletContextListener {
+    private static Logger logger = LoggerFactory.getLogger("LIFECYCLE");
 
     @Override
     public void contextDestroyed(ServletContextEvent event) {
+        logger.info("{}-{}", this.getClass().getName(), "contextDestroyed");
         WebLogbackConfigurer.shutdownLogging(event.getServletContext());
     }
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
+        logger.info("{}-{}", this.getClass().getName(), "contextInitialized");
         WebLogbackConfigurer.initLogging(event.getServletContext());
+        LoggerContext localLoggerContext = (LoggerContext) StaticLoggerBinder.getSingleton().getLoggerFactory();
+        String logHome = localLoggerContext.getProperty("LOG_HOME");
+        if (logHome != null) {
+            logger.info("{}-{}-log home is {}", this.getClass().getName(), "contextInitialized", logHome);
+        }
     }
 }
