@@ -70,8 +70,8 @@ public class LogbackConfigurer {
     public static void initLogging(String location) throws FileNotFoundException, JoranException {
         String resolvedLocation = SystemPropertyUtils.resolvePlaceholders(location);
         URL url = ResourceUtils.getURL(resolvedLocation);
-        Util.report("logback configurer error 1/0");
-        //int i=1/0;
+        Util.report("logback configurer error position");
+
         LoggerContext loggerContext = (LoggerContext)StaticLoggerBinder.getSingleton().getLoggerFactory();
 
         // in the current version logback automatically configures at startup the context, so we have to reset it
