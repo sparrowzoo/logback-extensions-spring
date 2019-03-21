@@ -7,9 +7,11 @@ https://github.com/qos-ch/logback-extensions/wiki
 Run the following command to build:
 
 ```
-./gradlew clean assemble
+./gradlew clean install
 
 ./gradlew uploadArchives
+
+cd  /.m2/repository/org/logback-extensions/logback-ext-spring/0.1.6-SNAPSHOT
 ```
 
 #### License
